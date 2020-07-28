@@ -10,7 +10,7 @@ export class CityWeatherInfo extends Component {
             selectedCity: ''
         }
     }
-componentDidMount() {
+    componentDidMount() {
         if(this.props.selectedCity) {
             this.setState({ selectedCity: this.props.selectedCity});
             getWeatherByCity(cities[this.props.selectedCity].name).then(data => this.setState({ data}))
