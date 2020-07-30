@@ -1,51 +1,41 @@
-import React , { Component } from 'react'
+import React  from 'react'
 import { cities } from '../data/citiesList';
-import { getWeatherByCity } from '../services'
+import {CityRow} from '../components/CityRow';
+
+//import { getWeatherByCity } from '../services'
 
 
-export  class List extends Component {
-    constructor(props) {
-        super(props);
+export  function List(props){
 
-        this.state = {
-         data: null,
-         city: ''
-        }
+    const citiesKeys = Object.keys(cities);
+    const getFilteredCities = () =>{
+        return citiesKeys.filter(city =>{
+            if(city !==props.selectedCity){
+               
+               return city
+          }
+            
+        })
+    }
+    console.log( getFilteredCities())
+ return(
+     <React.Fragment>
+     <h1>List of Cities</h1>
+     {getFilteredCities().map(city=>{
+         return (<CityRow key={city} cityName={cities[city].name}/>)
+     }
+
+     )}
     
-}
+         
+         
+     
 
-CityRow=()=>{
-    return this.state.data.map(city=>{
-
-        Math.floor(city.temp)
-    }
-
-    )
-
-    }
+     
+     </React.Fragment>
+ )
 
 
-/*componentDidMount(){
-   
-    if(this.props.city) {
-        this.setState({ city: this.props.city});
-        getWeatherByCity(cities[this.props.city].name).then(data => this.setState({ data}))
-       
-    }
-}*/
 
+ }
 
-    render() {
-        const citiesKeys = Object.keys(cities);
-       
-
-    return (
-       
-       
-              citiesKeys.map(city => {
-             return (<div id={city} key={city} value={city}>{cities[city].name}: {this.CityRow}<span>&#x2103;</span></div>)
-               })
-    )
-              
-                  
-}}

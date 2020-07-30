@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './App.css';
 import { Header, Footer } from './components';
-import { Home, About, NotFound,List } from './pages';
+import { Home, About, NotFound,List,Forecast } from './pages';
 import {
   BrowserRouter as Router,
   Switch,
@@ -39,7 +39,10 @@ getSelectedCity=(city)=>{
             <About />
              </Route>
              <Route path='/list'>
-            <List />
+            <List selectedCity={this.state.selectedCity}  />
+             </Route>
+             <Route path='/forecast'>
+            <Forecast selectedCity={this.state.selectedCity}  />
              </Route>
              
              <Route path='*'>
